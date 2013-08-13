@@ -1,7 +1,7 @@
 //landscape
 //portrait
 
-var url = 'http://localhost/data.php';
+var url = 'http://192.168.107.55/data.php';
 var dataArray = new Array();
 var orientation = 'portrait';
 var isPortrait = (window.innerHeight > window.innerWidth);
