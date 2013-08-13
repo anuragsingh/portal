@@ -34,7 +34,7 @@ function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
 	alert(orientation);
-	if(orientation == 'portrait') {alert('a');
+	if(orientation == 0) {alert('a');
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<div><table>';
 			for(var k=0; k < dataArray[j].length; k++) {
