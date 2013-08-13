@@ -17,7 +17,7 @@ $( window ).on( "orientationchange", function( event ) {
 });
 
 $.getJSON(url, function(jsonData) {
-	alert(jsonData);	
+	//alert(jsonData);	
 	$.each(jsonData, function(k, v) {
 		dataArray[k] = new Array();
 		$.each(v, function(k1, v1) {
@@ -32,7 +32,8 @@ $.getJSON(url, function(jsonData) {
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
-	if(orientation == 'portrait') {
+	alert(orientation);
+	if(orientation == 'portrait') {alert('a');
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<div><table>';
 			for(var k=0; k < dataArray[j].length; k++) {
