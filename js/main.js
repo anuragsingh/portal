@@ -14,7 +14,7 @@ if(window.innerHeight > window.innerWidth) {
 
 
 $( window ).on( "orientationchange", function( event ) {
-	$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
+	//$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
 	if(event.orientation == 'portrait') {
 		deviceOrientation = 0;
 	} else {
@@ -25,7 +25,7 @@ $( window ).on( "orientationchange", function( event ) {
 });
 
 $.getJSON(url, function(jsonData) {
-	alert(jsonData);	
+	//alert(jsonData);	
 	$.each(jsonData, function(k, v) {
 		dataArray[k] = new Array();
 		$.each(v, function(k1, v1) {
@@ -53,7 +53,7 @@ $.getJSON(url, function(jsonData) {
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
-	if(deviceOrientation == 1) {
+	if(deviceOrientation == 0) {
 		html += '<ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">';
 		for(var j=1; j < dataArray.length; j++) {
 			//html += '<li data-theme="c" class="ui-li ui-li-static ui-btn-up-c">';
