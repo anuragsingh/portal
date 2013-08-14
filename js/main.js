@@ -2,15 +2,15 @@
 var url = 'http://192.168.107.55/data.php';
 //var url = 'http://localhost/data.php';
 var dataArray = new Array();
-var orientation = 'portrait';
+var orientation = 'port';
 alert(orientation);
 alert(window.innerHeight);
 alert(window.innerWidth);
 if(window.innerHeight > window.innerWidth) {alert('az');
-	orientation = 'portrait';
+	orientation = 'port';
 	alert(orientation);
 } else {alert('azsx');
-	orientation = 'landscape';
+	orientation = 'land';
 	alert(orientation);
 }
 alert(orientation);
@@ -21,24 +21,24 @@ $( window ).on( "orientationchange", function( event ) {
 	renderData(dataArray);
 });
 
-//$.getJSON(url, function(jsonData) {
-	//alert(jsonData);	
-	//$.each(jsonData, function(k, v) {
-		//dataArray[k] = new Array();
-		//$.each(v, function(k1, v1) {
-			//dataArray[k][k1] = v1;
-		//});
-	//});
+$.getJSON(url, function(jsonData) {
+	alert(jsonData);	
+	$.each(jsonData, function(k, v) {
+		dataArray[k] = new Array();
+		$.each(v, function(k1, v1) {
+			dataArray[k][k1] = v1;
+		});
+	});
 	
-	//renderData(dataArray);
+	renderData(dataArray);
 	
-//});
+});
 
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
 	alert(orientation);
-	if(orientation == 'portrait') {alert('a');
+	if(orientation == 'port') {alert('a');
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<div><table>';
 			for(var k=0; k < dataArray[j].length; k++) {
