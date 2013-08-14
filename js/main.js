@@ -1,15 +1,19 @@
-//landscape
-//portrait
 
 var url = 'http://192.168.107.55/data.php';
+//var url = 'http://localhost/data.php';
 var dataArray = new Array();
 var orientation = 'portrait';
-var isPortrait = (window.innerHeight > window.innerWidth);
-if(isPortrait) {
-	var orientation = 'portrait';
-} else {
-	var orientation = 'landscape';
+alert(orientation);
+alert(window.innerHeight);
+alert(window.innerWidth);
+if(window.innerHeight > window.innerWidth) {alert('az');
+	orientation = 'portrait';
+	alert(orientation);
+} else {alert('azsx');
+	orientation = 'landscape';
+	alert(orientation);
 }
+alert(orientation);
 
 $( window ).on( "orientationchange", function( event ) {
 	$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
@@ -17,24 +21,24 @@ $( window ).on( "orientationchange", function( event ) {
 	renderData(dataArray);
 });
 
-$.getJSON(url, function(jsonData) {
+//$.getJSON(url, function(jsonData) {
 	//alert(jsonData);	
-	$.each(jsonData, function(k, v) {
-		dataArray[k] = new Array();
-		$.each(v, function(k1, v1) {
-			dataArray[k][k1] = v1;
-		});
-	});
+	//$.each(jsonData, function(k, v) {
+		//dataArray[k] = new Array();
+		//$.each(v, function(k1, v1) {
+			//dataArray[k][k1] = v1;
+		//});
+	//});
 	
-	renderData(dataArray);
+	//renderData(dataArray);
 	
-});
+//});
 
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
 	alert(orientation);
-	if(orientation == 0) {alert('a');
+	if(orientation == 'portrait') {alert('a');
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<div><table>';
 			for(var k=0; k < dataArray[j].length; k++) {
@@ -44,12 +48,12 @@ function renderData(dataArray) {
 		}
 		$("#contentContainer").html(html);
 	} else {
-		html += '<table>';
-		html += '<tr>';
+		html += '<table data-role="table" id="my-table" data-mode="reflow">';
+		html += '<thead><tr>';
 		for(var i=0; i < dataArray[0].length; i++) {
 			html += '<th>'+dataArray[0][i]+'</th>';
 		}
-		html += '</tr>';
+		html += '</tr></thead><tbody>';
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<tr>';
 			for(var k=0; k < dataArray[j].length; k++) {
@@ -57,7 +61,7 @@ function renderData(dataArray) {
 			}
 			html += '</tr>';
 		}
-		html += '</table>';
+		html += '</tbody></table>';
 		$("#contentContainer").html(html);
 	}
 
