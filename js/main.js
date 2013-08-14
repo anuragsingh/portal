@@ -17,7 +17,12 @@ alert(deviceOrientation);
 
 $( window ).on( "orientationchange", function( event ) {
 	$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
-	deviceOrientation = event.orientation;
+	if(event.orientation == 'portrait') {
+		deviceOrientation = 0;
+	} else {
+		deviceOrientation = 1;
+	}
+	//deviceOrientation = event.orientation;
 	renderData(dataArray);
 });
 
