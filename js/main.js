@@ -2,22 +2,22 @@
 var url = 'http://192.168.107.55/data.php';
 //var url = 'http://localhost/data.php';
 var dataArray = new Array();
-var orientation = 'port';
-alert(orientation);
+var deviceOrientation = 0;
+alert(deviceOrientation);
 alert(window.innerHeight);
 alert(window.innerWidth);
 if(window.innerHeight > window.innerWidth) {alert('az');
-	orientation = 'port';
-	alert(orientation);
+	deviceOrientation = 0;
+	alert(deviceOrientation);
 } else {alert('azsx');
-	orientation = 'land';
-	alert(orientation);
+	deviceOrientation = 1;
+	alert(deviceOrientation);
 }
-alert(orientation);
+alert(deviceOrientation);
 
 $( window ).on( "orientationchange", function( event ) {
 	$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
-	orientation = event.orientation;
+	deviceOrientation = event.orientation;
 	renderData(dataArray);
 });
 
@@ -37,8 +37,8 @@ $.getJSON(url, function(jsonData) {
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
-	alert(orientation);
-	if(orientation == 'port') {alert('a');
+	alert(deviceOrientation);
+	if(deviceOrientation == 0) {alert('a');
 		for(var j=1; j < dataArray.length; j++) {
 			html += '<div><table>';
 			for(var k=0; k < dataArray[j].length; k++) {
