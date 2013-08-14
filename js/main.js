@@ -1,19 +1,17 @@
+$(document).ready(function () {
 
 var url = 'http://192.168.107.55/data.php';
 //var url = 'http://localhost/data.php';
+
 var dataArray = new Array();
 var deviceOrientation = 0;
-alert(deviceOrientation);
-alert(window.innerHeight);
-alert(window.innerWidth);
-if(window.innerHeight > window.innerWidth) {alert('az');
+
+if(window.innerHeight > window.innerWidth) {
 	deviceOrientation = 0;
-	alert(deviceOrientation);
-} else {alert('azsx');
+} else {
 	deviceOrientation = 1;
-	alert(deviceOrientation);
 }
-alert(deviceOrientation);
+
 
 $( window ).on( "orientationchange", function( event ) {
 	$( "#orientation" ).text( "This device is in " + event.orientation + " mode!" );
@@ -39,21 +37,38 @@ $.getJSON(url, function(jsonData) {
 	
 });
 
+//dataArray[0] = new Array();
+//dataArray[1] = new Array();
+//dataArray[2] = new Array();
+//dataArray[3] = new Array();
+//dataArray[4] = new Array();
+
+//dataArray[0][0] = 'Username';dataArray[0][1] = 'Firstname';dataArray[0][2] = 'Lastname';dataArray[0][3] = 'Job';
+//dataArray[1][0] = 'Username';dataArray[1][1] = 'Firstname';dataArray[1][2] = 'Lastname';dataArray[1][3] = 'Job';
+//dataArray[2][0] = 'Username';dataArray[2][1] = 'Firstname';dataArray[2][2] = 'Lastname';dataArray[2][3] = 'Job';
+//dataArray[3][0] = 'Username';dataArray[3][1] = 'Firstname';dataArray[3][2] = 'Lastname';dataArray[3][3] = 'Job';
+//dataArray[4][0] = 'Username';dataArray[4][1] = 'Firstname';dataArray[4][2] = 'Lastname';dataArray[4][3] = 'Job';
+
+
 function renderData(dataArray) {
 	var headers = dataArray[0];
 	var html = '';
-	alert(deviceOrientation);
-	if(deviceOrientation == 0) {alert('a');
+	if(deviceOrientation == 1) {
+		html += '<ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">';
 		for(var j=1; j < dataArray.length; j++) {
-			html += '<div><table>';
+			//html += '<li data-theme="c" class="ui-li ui-li-static ui-btn-up-c">';
+			html += '<li data-theme="c" class="ui-li ui-li-static ui-btn-up-c"><table style="width: 100%;">';
 			for(var k=0; k < dataArray[j].length; k++) {
+				//html += '<div style="width:49%; float: left;">'+headers[k]+' :</div><div style="width:49%; float: right;">'+dataArray[j][k]+'</div>';
 				html += '<tr><td>'+headers[k]+' :</td><td>'+dataArray[j][k]+'</td></tr>';
 			}
-			html += '</table></div>';
+			//html += '</li>';
+			html += '</table></li>';
 		}
+		html += '</ul>';
 		$("#contentContainer").html(html);
 	} else {
-		html += '<table data-role="table" id="my-table" data-mode="reflow">';
+		html += '<table data-role="table" id="my-table" data-mode="reflow" class="ui-responsive customTableUi">';
 		html += '<thead><tr>';
 		for(var i=0; i < dataArray[0].length; i++) {
 			html += '<th>'+dataArray[0][i]+'</th>';
@@ -67,7 +82,12 @@ function renderData(dataArray) {
 			html += '</tr>';
 		}
 		html += '</tbody></table>';
+		
 		$("#contentContainer").html(html);
 	}
 
 }
+
+renderData(dataArray);
+
+});
