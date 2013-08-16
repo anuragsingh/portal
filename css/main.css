@@ -34,11 +34,10 @@ table.customTableUi tr:last-child td {
 }
 
 .scrollable {
-   overflow: scroll;
-   -webkit-overflow-scrolling: touch;
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 }
- 
 /* iOS specific fix, don't use it on Android devices */
 .scrollable > * {
-   -webkit-transform: translateZ(0px);
+	-webkit-transform: translateZ(0px);
 }
