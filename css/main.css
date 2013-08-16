@@ -32,3 +32,13 @@ table.customTableUi tr td:last-child {
 table.customTableUi tr:last-child td {
     border-bottom: none;
 }
+
+.scrollable {
+   overflow: scroll;
+   -webkit-overflow-scrolling: touch;
+}
+ 
+/* iOS specific fix, don't use it on Android devices */
+.scrollable > * {
+   -webkit-transform: translateZ(0px);
+}

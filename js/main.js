@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-var url = 'http://192.168.107.55/data.php';
+var url = 'http://192.168.107.55/data1.php';
 //var url = 'http://localhost/data.php';
 
 var dataArray = new Array();
