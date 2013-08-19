@@ -71,7 +71,8 @@ function renderData(dataArray) {
 		html += '<table data-role="table" id="my-table" data-mode="reflow" class="ui-responsive customTableUi">';
 		html += '<thead><tr>';
 		for(var i=0; i < dataArray[0].length; i++) {
-			html += '<th>'+dataArray[0][i]+'</th>';
+			//html += '<th>'+dataArray[0][i]+'</th>';
+			html += '<th id="header_'+i+'">'+dataArray[0][i]+'</th>';
 		}
 		html += '</tr></thead><tbody>';
 		for(var j=1; j < dataArray.length; j++) {
@@ -84,10 +85,55 @@ function renderData(dataArray) {
 		html += '</tbody></table>';
 		
 		$("#contentContainer").html(html);
+		
+		tableSorting();
+		
 	}
 
 }
 
 renderData(dataArray);
+
+
+function tableSorting() {
+
+    var table = $('table');
+    
+    $('#header_0, #header_1, #header_2, #header_3, #header_4, #header_5')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function(){
+            
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+            
+            th.click(function(){
+                
+                table.find('td').filter(function(){
+                    
+                    return $(this).index() === thIndex;
+                    
+                }).sortElements(function(a, b){
+                    
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+                    
+                }, function(){
+                    
+                    return this.parentNode; 
+                    
+                });
+                
+                inverse = !inverse;
+                    
+            });
+                
+        });
+
+
+}
+
+
 
 });
